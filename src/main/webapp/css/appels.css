@@ -1,0 +1,90 @@
+/* GLOBAL */
+
+body{
+  	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+  	/* background: url("../img/bkg.jpg");
+  	background-size: cover;
+  	background-position: center; */
+}
+
+input:not(.button){
+	font-size: 14px !important;
+}
+
+
+/* HEADER */
+/*
+nav{
+	position: fixed;
+}
+
+form{
+	position: fixed;
+}*/
+
+.liste-utilisateur:hover, .liste-appels:hover{
+	color: rgba(255,255,255) !important;
+}
+
+header nav div .deconnexion{
+	color: rgba(255,255,255,.55);
+}
+
+header nav div .deconnexion:hover{
+	color: rgba(255,255,255);
+}
+
+/* MAIN */
+
+table{
+	font-size: 10px;
+	width: 230% !important;
+}
+
+.button{
+	font-size: 12px;
+}
+
+
+.filter .filter1 div select{
+	font-size: 12px;
+}
+
+/*DATE ET HEURE*/
+#AV1, #AV1Bis,
+#BV1, #BV1Bis,
+#CV1, #CV1Bis{
+	font-size: 12px;
+}
+
+/*CHAMPS FORMULAIRE*/
+#A1, #A2, #A3, #A4, #A5, #A6, #A7, #A8, #A9, #A10, #A11, #A12, #A14, #A15, #A16, #A17,
+#B1, #B2, #B3, #B4, #B5, #B6, #B7, #B8, #B9, #B10, #B11, #B12, #B14, #B15, #B16, #B17,
+#C1, #C2, #C3, #C4, #C5, #C6, #C7, #C8, #C9, #C10, #C11, #C12, #C14, #C15, #C16, #C17{
+	display:none;
+}
+
+
+/*Checkbox VU*/
+.filter .filter2 #A16 input, 
+.filter .filter2 #B16 input, 
+.filter .filter2 #C16 input{
+	width:16px;
+	height:16px;
+}
+
+
+
+
+
+
+
+						
+
+
+
+
+
+
+
