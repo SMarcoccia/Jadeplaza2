@@ -39,7 +39,7 @@
 		<div class="container">
    		<h1 class="text-center mb-5 mt-1">Liste des appels</h1>
     	<div>
-    		<p>Nb d'appels : ${ pageDAppels.getTotalElements() }</p>
+    		<p>Nb d'appels : ${ pageDAppels.getTotalElements() } et ${pageDAppels.getNumberOfElements() }</p>
             <form action="filtrer" method="post" autocomplete="off">
 				<div class="row mb-3">
 					<!-- IL Y A 3 COLONNES -->
@@ -538,22 +538,22 @@
 						<c:forEach items="${ pageDAppels.content }" var="appel">
 						<tr>
 							<td>${ appel.dateHeure }</td>
-							<td><!-- appel.agence.nom --></td>
-							<td><!-- appel.recuPar.initiales --></td>
-							<td><!-- appel.typeAppelant.nom --></td>
+							<td>${ appel.agence.nom }</td>
+							<td>${ appel.suiviPar.initiales } ${ appel.suiviPar2.initiales } ${ appel.suiviPar3.initiales }</td>
+							<td>${ appel.typeAppelant.nom }</td>
 							<td>${ appel.nom }</td>
 							<td>${ appel.prenom }</td>
 							<td>${ appel.mobile }</td>
 							<td>${ appel.telephone }</td>
 							<td>${ appel.email }</td>
 							<td>${ appel.objet }</td>
-							<td>${ appel.nomAnnonce }</td>
-							<td>${ appel.nomOrigine }</td>
-							<td>${ appel.typeAppel }</td>
+							<td>${ appel.annonce.nom }</td>
+							<td>${ appel.origine.nom }</td>
+							<td>${ appel.typeAppelant.nom }</td>
 							<td>${ appel.nomDuMandat }</td>
-							<td><!-- appel.recuPar.initiales  --> </td>
+							<td>${ appel.recuPar.initiales }</td>
 							<td>${ appel.estAccuse }</td>
-							<td></td>
+							<td>${ appel.suivre }</td>
 							<td>${ appel.estTermine }</td>
 						</tr>
 						</c:forEach> 
@@ -565,11 +565,11 @@
 	<div class="d-flex justify-content-center">
 		<nav aria-label="Page navigation">
 		  	<ul class="pagination">
-    			<li class="page-item"><a class="page-link" href="index?page=${ pageDAppel.number-1 }">Precedent</a></li>
-				<c:forEach var="i" begin="1" end="${ pageDAppel.getTotalPages() }" step="1">
-					<li class="page-item"><a class="page-link" href="index?page=${i-1}">${i}</a></li>
+    			<li class="page-item"><a class="page-link" href="appels?page=${ pageDAppels.number-1 }">Precedent</a></li>
+				<c:forEach var="i" begin="1" end="${ pageDAppels.getTotalPages() }" step="1">
+					<li class="page-item"><a class="page-link" href="appels?page=${i-1}">${i}</a></li>
 		    	</c:forEach>	
-				<li class="page-item"><a class="page-link" href="index?page=${ pageDAppel.number < pageDAppel.getTotalPages()-1 ? pageDAppel.number + 1 : pageDAppel.getTotalPages()-1}">Suivant</a></li>
+				<li class="page-item"><a class="page-link" href="appels?page=${ pageDAppels.number < pageDAppels.getTotalPages()-1 ? pageDAppels.number + 1 : pageDAppels.getTotalPages()-1}">Suivant</a></li>
   			</ul>
 		</nav>
 	</div>
