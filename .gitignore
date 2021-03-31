@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Npplication.properties ###
+.properties
+
+### Script.sql ###
+.sql
+
+### Log ###
+/log
