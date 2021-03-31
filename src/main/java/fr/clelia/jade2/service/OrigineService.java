@@ -1,5 +1,10 @@
 package fr.clelia.jade2.service;
 
-public interface OrigineService {
+import java.util.List;
 
+import fr.clelia.jade2.business.Origine;
+
+public interface OrigineService {
+	
+	List<Origine> recupererOrigines();
 }
