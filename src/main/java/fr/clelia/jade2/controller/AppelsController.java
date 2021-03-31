@@ -66,21 +66,6 @@ public class AppelsController {
 		return mav;
 	}
 	
-	/*
-	@GetMapping("/appels")
-	public ModelAndView appelsGet(
-	) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("agences", agenceService.recupererAgences());
-		mav.addObject("annonces", annonceService.recupererAnnonces());
-		mav.addObject("origines", origineService.recupererOrigines());
-		mav.addObject("personnes", personneService.recupererPersonnes());
-		mav.addObject("typeAppelants", typeAppelantService.recupererTypeAppelants());
-		mav.addObject("pageDAppels", appelService.recupererAppels(4453));
-		mav.setViewName("appels");
-		return mav;
-	}*/
-	
 	@PostMapping("/filtrer")
 	public ModelAndView filtrerPost(
 		 @PageableDefault(
