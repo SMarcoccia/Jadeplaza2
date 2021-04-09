@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+/* GLOBAL */
+
+body{
+  	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+  	/* background: url("../img/bkg.jpg");
+  	background-size: cover;
+  	background-position: center; */
+}
+
+/* MAIN */
+
+.form-group{
+	margin: 6px 0 6px 0;
+}
+
+select,
+.button,
+a{
+	font-size: 12px !important;
+}
+
+.liste-comptes:hover, .liste-appels:hover{
+	color: rgba(255,255,255) !important;
+}
+
+header nav div .deconnexion{
+	color: rgba(255,255,255,.55);
+}
+
+header nav div .deconnexion:hover{
+	color: rgba(255,255,255);
+}
