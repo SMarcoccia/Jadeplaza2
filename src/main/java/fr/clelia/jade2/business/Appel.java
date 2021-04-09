@@ -1,14 +1,23 @@
 package fr.clelia.jade2.business;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Length;
-
-import java.util.Date;
 
 
 /**
@@ -27,57 +36,58 @@ public class Appel implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="RECEIVEDON")
+	//@NotNull(message="Merci de renseigner une date")
 	private Date dateHeure;
 	
-	@NotNull(message="Veuillez specifier votre nom")
+	//@NotNull(message="Veuillez specifier votre nom")
 	@Column(name="LASTNAME")
 	private String nom;
 	
-	@NotNull(message="Veuillez specifier votre prénom")
+	//@NotNull(message="Veuillez specifier votre prénom")
 	@Column(name="FIRSTNAME")
 	private String prenom;
 	
-	@NotNull(message="Veuillez specifier le numéro de mobile")
+	//@NotNull(message="Veuillez specifier le numéro de mobile")
 	@Column(name="MOBILENUMBER")
 	private String mobile;
 	
 	@Column(name="PHONENUMBER")
 	private String telephone;
 	
-	@NotNull(message="Veuillez specifier votre email")
+	//@NotNull(message="Veuillez specifier votre email")
 	@Email(message="Merci de renseigner un email au bon format")
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
 	@Lob
-	@Size(min=6, message="Veuillez entrer un message d'au moins 6 caractères")
-	@NotNull(message="Veuillez specifier l'objet de l'appel")
+	//@Size(min=6, message="Veuillez entrer un message d'au moins 6 caractères")
+	//@NotNull(message="Veuillez specifier l'objet de l'appel")
 	@Column(name="OBJECT")
 	private String objet;
 	
-	@NotNull(message="Veuillez specifier le nom du mandat")
+	//@NotNull(message="Veuillez specifier le nom du mandat")
 	@Column(name="MANDATENAME")
 	private String nomDuMandat;
 	
 	@Lob
-	@Size(min=3, message="Veuillez entrer un message d'au moins 3 caractères")
+	//@Size(min=3, message="Veuillez entrer un message d'au moins 3 caractères")
 	@Column(name="FOLLOWUP")
 	private String suivre;
 	
-	@NotNull(message="Veuillez specifier votre adresse")
+	//@NotNull(message="Veuillez specifier votre adresse")
 	@Column(name="ADDRESSLINE1")
 	private String ligneAdresse1;
 
-	@Length(min=5, max=5, message="Le code postal doit contenir 5 chiffres")
-	@NotNull(message="Veuillez specifier votre code postal")
+	//@Length(min=5, max=5, message="Le code postal doit contenir 5 chiffres")
+	//@NotNull(message="Veuillez specifier votre code postal")
 	@Column(name="POSTCODE")
 	private String codePostal;
 	
-	@NotNull(message="Veuillez specifier votre ville")
+	//@NotNull(message="Veuillez specifier votre ville")
 	@Column(name="TOWN")
 	private String ville;
 	
-	@NotNull(message="Veuillez specifier un code couleur")
+	//@NotNull(message="Veuillez specifier un code couleur")
 	@Column(name="COLOURCODE")
 	private String codeCouleur;
 	
@@ -88,9 +98,9 @@ public class Appel implements Serializable {
 	private boolean estSupprime;
 	
 	@Column(name="COMPLETE")
-	private boolean estTermine;
+	private byte estTermine;
 	
-	@NotNull(message="Veuillez specifier le type d'appel")
+	//@NotNull(message="Veuillez specifier le type d'appel")
 	@Column(name="CALLTYPE")
 	private String typeAppel;
 
@@ -110,18 +120,17 @@ public class Appel implements Serializable {
 	//bi-directional many-to-one association to CallerType
 	@ManyToOne
 	@JoinColumn(name="CALLERTYPEID")
-	@NotNull(message="Veuillez renseigner le type d'appelant")
+	//@NotNull(message="Veuillez renseigner le type d'appelant")
 	private TypeAppelant typeAppelant;
 
 	//bi-directional many-to-one association to Source
 	@ManyToOne
 	@JoinColumn(name="SOURCEID")
 	private Origine origine;
-	
-	
+
 	
 	/* ---- RELATION AVEC PERSONNE ---- */
-	
+
 	//bi-directional many-to-one association to Personne
 	@ManyToOne
 	@JoinColumn(name="NEGOCIATOR")
@@ -153,10 +162,24 @@ public class Appel implements Serializable {
 	@NotNull(message="Veuillez renseigner la personne qui à reçu l'appel")
 	private Personne recuPar;
 
+	
+	
 	public Appel() {
 		super();
 	}
+	
+	public Appel(int id) {
+		super();
+		this.id = id;
+	}
 
+	public Appel(
+			Personne suiviPar 
+	) {
+		super();
+		this.suiviPar = suiviPar;
+	}
+	
 	public Appel(
 			int id, 
 			Date dateHeure, 
@@ -174,7 +197,7 @@ public class Appel implements Serializable {
 			String codeCouleur, 
 			boolean estAccuse,
 			boolean estSupprime, 
-			boolean estTermine,
+			byte estTermine,
 			String typeAppel, 
 			Annonce annonce,
 			Agence agence,
@@ -346,11 +369,11 @@ public class Appel implements Serializable {
 		this.estSupprime = estSupprime;
 	}
 
-	public boolean isEstTermine() {
+	public byte getEstTermine() {
 		return estTermine;
 	}
 
-	public void setEstTermine(boolean estTermine) {
+	public void setEstTermine(byte estTermine) {
 		this.estTermine = estTermine;
 	}
 
@@ -442,16 +465,14 @@ public class Appel implements Serializable {
 		this.recuPar = recuPar;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Appel [" + "id=" + id + ", dateHeure=" + dateHeure + ", nom=" + nom + ", prenom=" + prenom + ", mobile="
+		return "Appel [id=" + id + ", dateHeure=" + dateHeure + ", nom=" + nom + ", prenom=" + prenom + ", mobile="
 				+ mobile + ", telephone=" + telephone + ", email=" + email + ", objet=" + objet + ", nomDuMandat="
 				+ nomDuMandat + ", suivre=" + suivre + ", ligneAdresse1=" + ligneAdresse1 + ", codePostal=" + codePostal
 				+ ", ville=" + ville + ", codeCouleur=" + codeCouleur + ", estAccuse=" + estAccuse + ", estSupprime="
-				+ estSupprime + ", estTermine=" + estTermine + ", typeAppel=" + typeAppel + ", annonce=" + annonce
-				+ ", agence=" + agence + ", typeAppelant=" + typeAppelant + ", origine=" + origine + ", negociateur="
-				+ negociateur + ", approuverPar=" + approuverPar + ", suiviPar=" + suiviPar + ", suiviPar2=" + suiviPar2
-				+ ", suiviPar3=" + suiviPar3 + ", recuPar=" + recuPar + "]";
+				+ estSupprime + ", estTermine=" + estTermine + ", typeAppel=" + typeAppel + "]";
 	}
 	
 	
