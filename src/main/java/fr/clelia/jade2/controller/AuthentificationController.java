@@ -59,7 +59,6 @@ public class AuthentificationController {
 		Personne personne = personneService.recupererPersonneParEmailEtMotDePasse(email, motDePasse);
 		if(personne != null) {
 			httpSession.setAttribute("personne", personne);	
-			//System.out.println("Dans Auth - httpSession : " + httpSession.getAttribute("personne"));
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("agences", agenceService.recupererAgences());
 			mav.addObject("annonces", annonceService.recupererAnnonces());
