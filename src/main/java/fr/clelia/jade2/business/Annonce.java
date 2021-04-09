@@ -33,6 +33,11 @@ public class Annonce implements Serializable {
 		super();
 	}
 
+	public Annonce(int id) {
+		super();
+		this.id = id;
+	}
+	
 	public Annonce(int id, int ordreAffichage, String nom, List<Appel> appels) {
 		super();
 		this.id = id;
@@ -75,7 +80,7 @@ public class Annonce implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Annonce [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + ", appels=" + appels + "]";
+		return "Annonce [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + "]";
 	}
 	
 	
