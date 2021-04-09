@@ -34,6 +34,12 @@ public class TypeAppelant implements Serializable {
 		super();
 	}
 
+	public TypeAppelant(int id) {
+		super();
+		this.id = id;
+	}
+
+	
 	public TypeAppelant(int id, int ordreAffichage, String nom, List<Appel> appels) {
 		super();
 		this.id = id;
@@ -76,8 +82,7 @@ public class TypeAppelant implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TypeAppelant [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + ", appels=" + appels
-				+ "]";
+		return "TypeAppelant [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + "]";
 	}
 	
 	
