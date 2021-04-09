@@ -57,5 +57,25 @@ document.querySelector('#CV1').valueAsDate = new Date();
 document.querySelector('#CV1Bis').valueAsDate = new Date();	
 */
 
+const fcOnDbClickTabLine = () =>{
+	const tr = document.querySelectorAll("#tr"); 
+	let id;
+	for(let i = 0; i < tr.length; i++){
+		tr[i].addEventListener('dblclick', e => {
+			id = tr[i].firstElementChild.innerHTML
+			document.location.href="http://localhost:8180/ajouter-un-appel/"+id; 
+		});
+	}
+}
+
+fcOnDbClickTabLine();
+/*const fctOnDbClick = (tbodyTr) => {
+	for(let i = 0; i < tbodyTr.length; i++){
+		console.log(tbodyTr[i]);
+		tbodyTr[i].addEventListener('dblclick', e => {
+			console.log("Salut");
+		});
+	}
+};*/
 
 
