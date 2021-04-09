@@ -31,6 +31,12 @@ public class Agence implements Serializable {
 		super();
 	}
 	
+	public Agence(int id) {
+		super();
+		this.id = id;
+	}
+
+	
 	public Agence(int id, String nom, List<Appel> appels) {
 		super();
 		this.id = id;
@@ -65,7 +71,7 @@ public class Agence implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Agence [id=" + id + ", nom=" + nom + ", appels=" + appels + "]";
+		return "Agence [id=" + id + ", nom=" + nom + "]";
 	}
 
 	
