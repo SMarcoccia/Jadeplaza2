@@ -1,45 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CLELIA - Jade - Liste des appels</title>
-		<link rel="stylesheet" type="text/css" href="bootstrap/css/4.5.3/bootstrap.min.css" id="bootstrap-css"/>
-		<link rel="stylesheet" type="text/css" href="css/appels.css"/>
-	</head>
-	<body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-flex align-items-center">
-			<div class=container>
-  				<a class="navbar-brand" href="#">CLELIA</a>
-   				<div class="collapse navbar-collapse" id="navbarColor01">
-				    <ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-					        <c:if test="${sessionScope.personne ne null}"><a class="liste-appels nav-link" href="#">Liste des appels</a></c:if>
-      					</li>
-      					<li class="nav-item">
-        					<c:if test="${sessionScope.personne ne null and personne.email == 'fxcote@clelia.fr'}"><a class="liste-utilisateur nav-link" href="#">Liste des utilisateurs</a></c:if>
-      					</li>
-    				</ul>
-  				</div>
-  				<c:if test="${sessionScope.personne ne null}">
-  					<span>${sessionScope.personne.nom} ${sessionScope.personne.prenom }</span>
-  					<a class="deconnexion nav-link" href="deconnexion">DÃ©connexion</a>
-  				</c:if>
-			</div>
-		</nav>
-	</header>
+	
+	<jsp:include page="header.jsp">
+    	<jsp:param name="style_css" value="css/appels.css"/>
+    </jsp:include>
 	
 	<main>
 		<div class="container">
    		<h1 class="text-center mb-5 mt-1">Liste des appels</h1>
     	<div>
-    		<p>Nb d'appels : ${ pageDAppels.getTotalElements() } et ${pageDAppels.getNumberOfElements() }</p>
+    		<p>Nb d'appels : ${pageDAppels.getTotalElements () }</p>
             <form action="filtrer" method="post" autocomplete="off">
 				<div class="row mb-3">
 					<!-- IL Y A 3 COLONNES -->
@@ -48,7 +20,6 @@
 				        <div class="row ">
         	            	<div class="d-flex justify-content-between mb-3">
                             	<a href="/ajouter-un-appel" class="button btn btn-primary py-0">Nouvel Appel</a>
-            	            	<a href="/consulter-un-appel" class="button btn btn-primary py-0">Consulter</a>
                 	        	<a href="/rafraichir" class="button btn btn-primary py-0">Rafraichir</a>
                     	    	<a href="/mes-appels" class="button btn btn-primary py-0">Mes Appels</a>
                     		</div> 
@@ -58,11 +29,11 @@
         	       			<div class="col-5">
                					<div class="form-check">
             	   					<input class="form-check-input" type="radio" name="CP" id="CP1" value="1"/>
-                	  				<label class="form-check-label" for="CP1">Appels traitÃ©s</label>
+                	  				<label class="form-check-label" for="CP1">Appels traités</label>
    	        					</div>
        	    					<div class="form-check">
             						<input class="form-check-input" type="radio" name="CP" id="CP2" checked value="2"/>
-            						<label class="form-check-label" for="CP2">Appels non traitÃ©s</label>
+            						<label class="form-check-label" for="CP2">Appels non traités</label>
 	           					</div>
 		    				</div>
         					<div class="col-7">
@@ -85,15 +56,15 @@
     						<div class="row mb-4">
     							<div class="col-7" style="width: 250px">
 	        						<select name="mySelect1" class="form-select py-0" id="filter1_param" onChange="refreshFilter1()">
-	     								<option value="-1">SÃ©lectionnez</option>
+	     								<option value="-1">Sélectionnez</option>
 	     								<option value="1" >Date & Heure</option>
-	     								<option value="2" >Agence concernÃ©e</option>
+	     								<option value="2" >Agence concernée</option>
 	 								    <option value="3" >Destinataire(s)</option>
 	 								    <option value="4" >Type d'appelant</option>
 	 							    	<option value="5" >Nom</option>
-	 								    <option value="6" >PrÃ©nom</option>
-	 							    	<option value="7" >NÂ° de mobile</option>
-	 								    <option value="8" >NÂ° de fixe</option>
+	 								    <option value="6" >Prénom</option>
+	 							    	<option value="7" >N° de mobile</option>
+	 								    <option value="8" >N° de fixe</option>
 	 								    <option value="9" >Email</option>
 	 								    <option value="10">Objet de l'appel/Commentaire</option>
 	 								    <option value="11">Support pub</option>
@@ -107,6 +78,7 @@
         						</div>
         						
 								<!-- DATE -->
+								<!-- ATTENTION DATE OBLIGATOIRE POUR LES 2 -->
 	 							<div class="filtre2Bis_1 col-5 w-auto">
 	 	        					<div id="A1">
 	 	        						<label for="AV1" class="form-check-label">Entre</label>
@@ -155,12 +127,12 @@
 	 									<input class="py-0 form-control" type="text" name="AV6"/>
 	 								</div>
 	 							
-	 								<!-- NÂ° DE MOBILE -->
+	 								<!-- N° DE MOBILE -->
 	 							    <div id="A7">
 	 									<input class="py-0 form-control" type="text" name="AV7"/>
 	 								</div>
 	 						
-	 								<!-- NÂ° DE FIXE -->
+	 								<!-- N° DE FIXE -->
 	 						    	<div id="A8">
 	 									<input class="py-0 form-control" type="text" name="AV8"/>
 	 								</div>
@@ -225,15 +197,15 @@
 	 		   				<div class="row mb-4">
 	 		   					<div class="col-7" style="width: 250px">
 	     	    					<select name="mySelect2" class="form-select py-0" id="filter2_param" onChange="refreshFilter2()">
-	        							<option value="-1">SÃ©lectionnez</option>
+	        							<option value="-1">Sélectionnez</option>
 	     								<option value="1">Date & Heure</option>
-	     								<option value="2">Agence concernÃ©e</option>
+	     								<option value="2">Agence concernée</option>
 	 								    <option value="3">Destinataire(s)</option>
 	 								    <option value="4">Type d'appelant</option>
 	 							    	<option value="5">Nom</option>
-	 								    <option value="6">PrÃ©nom</option>
-	 							    	<option value="7">NÂ° de mobile</option>
-	 								    <option value="8">NÂ° de fixe</option>
+	 								    <option value="6">Prénom</option>
+	 							    	<option value="7">N° de mobile</option>
+	 								    <option value="8">N° de fixe</option>
 	 								    <option value="9">Email</option>
 	 								    <option value="10">Objet de l'appel / Commentaire</option>
 	 								    <option value="11">Support pub</option>
@@ -295,12 +267,12 @@
 	 									<input class="py-0 form-control" type="text" name="BV6"/>
 	 								</div>
 	 							
-	 								<!-- NÂ° DE MOBILE -->
+	 								<!-- N° DE MOBILE -->
 	 							    <div id="B7">
 	 									<input class="py-0 form-control" type="text" name="BV7"/>
 	 								</div>
 	 							
-	 								<!-- NÂ° DE FIXE -->
+	 								<!-- N° DE FIXE -->
 	 						    	<div id="B8">
 	 									<input class="py-0 form-control" type="text" name="BV8"/>
 	 								</div>
@@ -364,15 +336,15 @@
 	        				<div class="row mb-4">
 	        					<div class="col-7" style="width: 250px">
 	     	    					<select name="mySelect3" class="form-select py-0" id="filter3_param" onChange="refreshFilter3()">
-	     								<option value="-1">SÃ©lectionnez</option>
+	     								<option value="-1">Sélectionnez</option>
 	 	    							<option value="1">Date & Heure</option>
-	     								<option value="2">Agence concernÃ©e</option>
+	     								<option value="2">Agence concernée</option>
 	 								    <option value="3">Destinataire(s)</option>
 	 								    <option value="4">Type d'appelant</option>
 	 								    <option value="5">Nom</option>
-	 								    <option value="6">PrÃ©nom</option>
-	 							    	<option value="7">NÂ° de mobile</option>
-	 								    <option value="8">NÂ° de fixe</option>
+	 								    <option value="6">Prénom</option>
+	 							    	<option value="7">N° de mobile</option>
+	 								    <option value="8">N° de fixe</option>
 	 							    	<option value="9">Email</option>
 	 								    <option value="10">Objet de l'appel / Commentaire</option>
 	 								    <option value="11">Support pub</option>
@@ -434,12 +406,12 @@
 	   									<input class="py-0 form-control" type="text" name="CV6"/>
 	   								</div>
 	   							
-	   								<!-- NÂ° DE MOBILE -->
+	   								<!-- N° DE MOBILE -->
 	   							    <div id="C7">
 	   									<input class="py-0 form-control" type="text" name="CV7"/>
 	   								</div>
 	   						
-	   								<!-- NÂ° DE FIXE -->
+	   								<!-- N° DE FIXE -->
 	   							    <div id="C8">
 	   									<input class="py-0 form-control" type="text" name="CV8"/>
 	   								</div>
@@ -514,32 +486,40 @@
 				<table class="table table-bordered mx-1 ">
 					<thead>
 						<tr>
-							<th >DATE ET HEURE <a href="appels?sort=dateHeure">trier</a></th>
-							<th >AGENCE <a href="index?sort=pageDAppels.agence.nom">trier</a></th>
-							<th >DESTINATAIRE <a href="index?sort=pageDAppels.recuPar.initiales">trier</a></th>
-							<th >TYPE D'APPELANT<a href="index?sort=pageDAppels.typeAppelant.nom">trier</a></th>
-							<th >NOMS <a href="appels?sort=nom">trier</a></th>
-							<th >PRENOMS <a href="index?sort=pageDAppels.prenom">trier</a></th>
-							<th >N. DE MOBILE <a href="index?sort=pageDAppels.mobile">trier</a></th>
-							<th >N. DE FIXE <a href="index?sort=pageDAppels.telephone">trier</a></th>
-							<th >EMAIL <a href="index?sort=pageDAppels.email">trier</a></th>
-							<th >OBJET DE L'APPEL/COMMENTAIRE <a href="index?sort=pageDAppels.objet">trier</a></th>
-							<th >SUPPORT DE PUB <a href="index?sort=pageDAppels.annonce.nom">trier</a></th>
-							<th >ORIGINE CONTACT <a href="index?sort=pageDAppels.origine.nom">trier</a></th>
-							<th >TYPE CONTACT <a href="index?sort=pageDAppels.typeAppelant.nom">trier</a></th>
-							<th >NOM DU MANDAT <a href="index?sort=pageDAppels.nomDuMandat">trier</a></th>
-							<th >SAISIE PAR <a href="index?sort=pageDAppels.recuPar.initiales">trier</a></th>
-							<th >VU <a href="index?sort=pageDAppels.estAccuse">trier</a></th>
-							<th >ACTIONS/COMMENTAIRE <a href="index?sort=pageDAppels">trier</a></th>
-							<th >TRAITE <a href="index?sort=pageDAppels.estTermine">trier</a></th>
+							<th>SERVICE</th>
+							<th>DATE ET HEURE <a href="appels?sort=dateHeure">trier</a></th>
+							<th>AGENCE <a href="appels?sort=agence.nom">trier</a></th>
+							<th>DESTINATAIRE <a href="appels?sort=recuPar.initiales">trier</a></th>
+							<th>TYPE D'APPELANT<a href="appels?sort=typeAppelant.nom">trier</a></th>
+							<th>NOMS <a href="appels?sort=nom">trier</a></th>
+							<th>PRENOMS <a href="appels?sort=prenom">trier</a></th>
+							<th>N. DE MOBILE <a href="appels?sort=mobile">trier</a></th>
+							<th>N. DE FIXE <a href="appels?sort=telephone">trier</a></th>
+							<th>EMAIL <a href="appels?sort=email">trier</a></th>
+							<th>OBJET DE L'APPEL/COMMENTAIRE <a href="appels?sort=objet">trier</a></th>
+							<th>SUPPORT DE PUB <a href="appels?sort=annonce.nom">trier</a></th>
+							<th>ORIGINE CONTACT <a href="appels?sort=origine.nom">trier</a></th>
+							<th>TYPE CONTACT <a href="#">trier</a></th>
+							<th>NOM DU MANDAT <a href="appels?sort=nomDuMandat">trier</a></th>
+							<th>SAISIE PAR <a href="appels?sort=recuPar.initiales">trier</a></th>
+							<th>VU <a href="appels?sort=estAccuse">trier</a></th>
+							<th>ACTIONS/COMMENTAIRE <a href="appels?sort=pageDAppels">trier</a></th>
+							<th>TRAITE <a href="appels?sort=estTermine">trier</a></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="tbody">
 						<c:forEach items="${ pageDAppels.content }" var="appel">
-						<tr>
+						<tr id="tr">
+							<td style="display: none">${appel.id }</td>
+							<td><a href="/ajouter-un-appel?idAppel=${appel.id}" class="btnAction btn btn-warning m-1">Modifier</a></td>
 							<td>${ appel.dateHeure }</td>
 							<td>${ appel.agence.nom }</td>
-							<td>${ appel.suiviPar.initiales } ${ appel.suiviPar2.initiales } ${ appel.suiviPar3.initiales }</td>
+							<%-- Voir pour ajouter la liste des initiales --%>
+							<td>
+							${ appel.suiviPar.initiales } ${ appel.suiviPar2.initiales } ${ appel.suiviPar3.initiales }
+							</td>
+							<%--<c:forEach items="${ appel.recuPar }" var="recu">${ recu.initiales }</c:forEach> --%>
+							
 							<td>${ appel.typeAppelant.nom }</td>
 							<td>${ appel.nom }</td>
 							<td>${ appel.prenom }</td>
@@ -549,12 +529,25 @@
 							<td>${ appel.objet }</td>
 							<td>${ appel.annonce.nom }</td>
 							<td>${ appel.origine.nom }</td>
-							<td>${ appel.typeAppelant.nom }</td>
+							<td></td>
 							<td>${ appel.nomDuMandat }</td>
 							<td>${ appel.recuPar.initiales }</td>
-							<td>${ appel.estAccuse }</td>
+							<td>
+								<c:if test="${ appel.estAccuse }">Oui</c:if>
+								<c:if test="${ ! appel.estAccuse }">Non</c:if>
+							</td>
 							<td>${ appel.suivre }</td>
-							<td>${ appel.estTermine }</td>
+							<td>
+								<c:choose>
+									<c:when test="${ appel.estTermine eq 1}">
+										Oui
+									</c:when>
+									<c:when test="${ appel.estTermine eq 0}">
+										Non
+									</c:when>
+									<c:otherwise>En cours</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 						</c:forEach> 
 					</tbody>
@@ -562,22 +555,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="d-flex justify-content-center">
-		<nav aria-label="Page navigation">
-		  	<ul class="pagination">
-    			<li class="page-item"><a class="page-link" href="appels?page=${ pageDAppels.number-1 }">Precedent</a></li>
-				<c:forEach var="i" begin="1" end="${ pageDAppels.getTotalPages() }" step="1">
-					<li class="page-item"><a class="page-link" href="appels?page=${i-1}">${i}</a></li>
-		    	</c:forEach>	
-				<li class="page-item"><a class="page-link" href="appels?page=${ pageDAppels.number < pageDAppels.getTotalPages()-1 ? pageDAppels.number + 1 : pageDAppels.getTotalPages()-1}">Suivant</a></li>
-  			</ul>
-		</nav>
-	</div>
+	
+	<jsp:include page="pagination.jsp"/>
+
 	</main>
-	<footer>
-		<section class="container" id="footer">
-		</section>
-	</footer>
-	<script src="js/appels.js"></script>
-	</body>
-</html>
+	
+	<jsp:include page="footer.jsp"/>
