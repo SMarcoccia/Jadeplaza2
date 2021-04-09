@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/* GLOBAL */
+
+body{
+  	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+  	/* background: url("../img/bkg.jpg");
+  	background-size: cover;
+  	background-position: center; */
+}
+
+/* MAIN */
+
+.recuPar{
+	font-size: 16px;
+}
+
+.form-control{
+	padding: 1px;
+}
+
+.form-group, .form-control {
+	margin: 2px 0 2px 0;
+}
+
+select,
+.button,
+a{
+	font-size: 12px !important;
+}
+
+.liste-comptes:hover, .liste-appels:hover{
+	color: rgba(255,255,255) !important;
+}
+
+header nav div .deconnexion{
+	color: rgba(255,255,255,.55);
+}
+
+header nav div .deconnexion:hover{
+	color: rgba(255,255,255);
+}
