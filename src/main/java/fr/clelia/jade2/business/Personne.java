@@ -98,11 +98,20 @@ public class Personne implements Serializable {
 	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="recuPar")
 	private List<Appel> appelsQuiOnEteRecuPar;
+	
 
+	
 	public Personne() {
 		super();
 	}
 
+	public Personne(
+			int id
+	) {
+		super();
+		this.id = id;
+	}
+	
 	public Personne(
 			int id, 
 			String prenom,
@@ -245,7 +254,7 @@ public class Personne implements Serializable {
 	public boolean isEstActive() {
 		return estActive;
 	}
-
+	
 	public void setEstActive(boolean estActive) {
 		this.estActive = estActive;
 	}
@@ -298,17 +307,14 @@ public class Personne implements Serializable {
 		this.appelsQuiOnEteRecuPar = appelsQuiOnEteRecuPar;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", email=" + email
 				+ ", dateHeureCreation=" + dateHeureCreation + ", login=" + login + ", motDePasse=" + motDePasse
 				+ ", dateHeureDerniereVisite=" + dateHeureDerniereVisite + ", dateHeureCreationCompte="
 				+ dateHeureCreationCompte + ", nbDeConnexions=" + nbDeConnexions + ", estSupprimee=" + estSupprimee
-				+ ", initiales=" + initiales + ", estActive=" + estActive + ", appelsDontLaPersonneEstNegociateur="
-				+ appelsDontLaPersonneEstNegociateur + ", appelsQuiOnEteApprouverPar=" + appelsQuiOnEteApprouverPar
-				+ ", appelsQuiOnEteSuiviePar=" + appelsQuiOnEteSuiviePar + ", appelsQuiOnEteSuiviePar2="
-				+ appelsQuiOnEteSuiviePar2 + ", appelsQuiOnEteSuiviePar3=" + appelsQuiOnEteSuiviePar3
-				+ ", appelsQuiOnEteRecuPar=" + appelsQuiOnEteRecuPar + "]";
+				+ ", initiales=" + initiales + ", estActive=" + estActive + "]";
 	}
 	
 	
