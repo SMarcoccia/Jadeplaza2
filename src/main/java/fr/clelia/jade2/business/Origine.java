@@ -33,6 +33,11 @@ public class Origine implements Serializable {
 		super();
 	}
 
+	public Origine(int id) {
+		super();
+		this.id = id;
+	}
+	
 	public Origine(int id, int ordreAffichage, String nom, List<Appel> appels) {
 		super();
 		this.id = id;
@@ -75,7 +80,7 @@ public class Origine implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Origine [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + ", appels=" + appels + "]";
+		return "Origine [id=" + id + ", ordreAffichage=" + ordreAffichage + ", nom=" + nom + "]";
 	}
 
 	
