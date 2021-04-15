@@ -1,11 +1,37 @@
-/*GLOBAL*/
+/* GLOBAL */
 
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  /* background: url("../img/bkg.jpg");
-  background-size: cover;
-  background-position: center; */
+  	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+  	/* background: url("../img/bkg.jpg");
+  	background-size: cover;
+  	background-position: center; */
 }
+
+input:not(.button){
+	font-size: 14px !important;
+}
+
+header > #nav{
+  position: fixed;
+  position: absolue;
+  width: 100%;
+  z-index:1;
+}
+
+h1{
+	position: relative;
+	padding-top: 80px;
+}
+/* HEADER */
+/*
+nav{
+	position: fixed;
+}
+
+form{
+	position: fixed;
+}*/
 
 .liste-utilisateur:hover, .liste-appels:hover{
 	color: rgba(255,255,255) !important;
@@ -18,8 +44,21 @@ header nav div .deconnexion{
 header nav div .deconnexion:hover{
 	color: rgba(255,255,255);
 }
-/*MAIN*/
+
+/* MAIN */
+
+table{
+	font-size: 10px;
+	width: 230% !important;
+}
+
+.button{
+	font-size: 12px;
+}
 
 
+.filter .filter1 div select{
+	font-size: 12px;
+}
 
 

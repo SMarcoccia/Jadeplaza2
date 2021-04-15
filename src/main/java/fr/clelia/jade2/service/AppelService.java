@@ -1,5 +1,6 @@
 package fr.clelia.jade2.service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +20,6 @@ public interface AppelService {
 	
 	Appel ajouterAppel(Appel appel);
 	
-	List<Appel> recupererAppelsFiltrer(Map<String, String> map);
+	//Page<Appel> recupererAppelsFiltrer(Map<String, String> map, Pageable pageable);
+	Page<Appel> recupererAppelsFiltrer(Map<String, String> map, Pageable pageable) throws ParseException;
 }

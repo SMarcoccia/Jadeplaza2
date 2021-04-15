@@ -66,7 +66,7 @@ public class AuthentificationController {
 			mav.addObject("personnes", personneService.recupererPersonnes());
 			mav.addObject("typeAppelants", typeAppelantService.recupererTypeAppelants());
 			mav.addObject("pageDAppels", appelService.recupererAppels(pageable));
-			mav.setViewName("appels");
+			mav.setViewName("redirect:appels");
 			return mav;	
 		}
 		else {

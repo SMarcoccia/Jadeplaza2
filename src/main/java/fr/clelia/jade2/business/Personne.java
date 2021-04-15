@@ -24,11 +24,11 @@ public class Personne implements Serializable {
 	@Column(name="PERSONID")
 	private int id;
 
-	@NotBlank(message="Veuillez spécifier votre prénom")
+	//@NotBlank(message="Veuillez spécifier votre prénom")
     @Column(name="FIRSTNAME")
 	private String prenom;
-	
-	@NotBlank(message="Veuillez spécifier votre nom")
+
+	//@NotBlank(message="Veuillez spécifier votre nom")
     @Column(name="LASTNAME")
 	private String nom;
 	
@@ -64,7 +64,7 @@ public class Personne implements Serializable {
 	private int nbDeConnexions;
 
 	@Column(name="DELETED")
-	private boolean estSupprimee;
+	private boolean estSupprime;
 
 	@NotNull(message="Veuillez spécifier vos initiales")
     @Column(name="INITIALS")
@@ -75,27 +75,22 @@ public class Personne implements Serializable {
 
 	
 	
-	//bi-directional many-to-one association to PhoneCall
+
 	@OneToMany(mappedBy="negociateur")
 	private List<Appel> appelsDontLaPersonneEstNegociateur;
 
-	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="approuverPar")
 	private List<Appel> appelsQuiOnEteApprouverPar;
 
-	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="suiviPar")
 	private List<Appel> appelsQuiOnEteSuiviePar;
 
-	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="suiviPar2")
 	private List<Appel> appelsQuiOnEteSuiviePar2;
 
-	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="suiviPar3")
 	private List<Appel> appelsQuiOnEteSuiviePar3;
 
-	//bi-directional many-to-one association to PhoneCall
 	@OneToMany(mappedBy="recuPar")
 	private List<Appel> appelsQuiOnEteRecuPar;
 	
@@ -105,9 +100,7 @@ public class Personne implements Serializable {
 		super();
 	}
 
-	public Personne(
-			int id
-	) {
+	public Personne(int id) {
 		super();
 		this.id = id;
 	}
@@ -123,7 +116,7 @@ public class Personne implements Serializable {
 			Date dateHeureDerniereVisite,
 			Date dateHeureCreationCompte, 
 			int nbDeConnexions, 
-			boolean estSupprimee,
+			boolean estSupprime,
 			String initiales, 
 			boolean estActive,
 			List<Appel> appelsDontLaPersonneEstNegociateur,
@@ -144,7 +137,7 @@ public class Personne implements Serializable {
 		this.dateHeureDerniereVisite = dateHeureDerniereVisite;
 		this.dateHeureCreationCompte = dateHeureCreationCompte;
 		this.nbDeConnexions = nbDeConnexions;
-		this.estSupprimee = estSupprimee;
+		this.estSupprime = estSupprime;
 		this.initiales = initiales;
 		this.estActive = estActive;
 		this.appelsDontLaPersonneEstNegociateur = appelsDontLaPersonneEstNegociateur;
@@ -235,12 +228,12 @@ public class Personne implements Serializable {
 		this.nbDeConnexions = nbDeConnexions;
 	}
 
-	public boolean isEstSupprimee() {
-		return estSupprimee;
+	public boolean isEstSupprime() {
+		return estSupprime;
 	}
 
-	public void setEstSupprimee(boolean estSupprimee) {
-		this.estSupprimee = estSupprimee;
+	public void setEstSupprime(boolean estSupprime) {
+		this.estSupprime = estSupprime;
 	}
 
 	public String getInitiales() {
@@ -313,7 +306,7 @@ public class Personne implements Serializable {
 		return "Personne [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", email=" + email
 				+ ", dateHeureCreation=" + dateHeureCreation + ", login=" + login + ", motDePasse=" + motDePasse
 				+ ", dateHeureDerniereVisite=" + dateHeureDerniereVisite + ", dateHeureCreationCompte="
-				+ dateHeureCreationCompte + ", nbDeConnexions=" + nbDeConnexions + ", estSupprimee=" + estSupprimee
+				+ dateHeureCreationCompte + ", nbDeConnexions=" + nbDeConnexions + ", estSupprime=" + estSupprime
 				+ ", initiales=" + initiales + ", estActive=" + estActive + "]";
 	}
 	

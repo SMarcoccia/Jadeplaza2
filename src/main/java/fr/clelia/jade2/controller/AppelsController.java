@@ -1,5 +1,6 @@
 package fr.clelia.jade2.controller;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,25 +60,7 @@ public class AppelsController {
 		this.annonceService = annonceService;          
 		this.origineService = origineService;          
 	}
-	
 
-	@GetMapping({"/liste-des-comptes"})
-	public ModelAndView listeGet(
-		@PageableDefault(
-			size = 20,
-			sort = "LASTNAME",
-			direction = Sort.Direction.ASC
-		) Pageable pageable
-	) {
-		if(httpSession.getAttribute("personne") != null) {
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("personnes", personneService.recupererPersonnes());
-			mav.setViewName("comptes");
-			return mav;
-		} else {
-			return new ModelAndView("redirect:index");
-		}
-	}
 	
 	@GetMapping("/mes-appels")
 	public ModelAndView mesAppelsGet(
@@ -112,7 +95,6 @@ public class AppelsController {
 	) {
 		if(httpSession.getAttribute("personne") != null) {
 			if(result.hasErrors()) {
-				System.out.println("Je suis dans le haserrors");
 	    		ModelAndView mav = new ModelAndView();
 				mav.addObject("idAppel", idAppel);
 				mav.addObject("agences", agenceService.recupererAgences());
@@ -135,18 +117,15 @@ public class AppelsController {
 	}
 
 	@GetMapping({"/ajouter-un-appel", "/modifier-un-appel"})
-	public ModelAndView appelGet(
-		@ModelAttribute("appel") Appel appel,
+	public ModelAndView appelGet( 
+		@ModelAttribute("appel") Appel appel, 
 		@RequestParam(required=false, value="idAppel") String idAppel
 	) {
 		if(httpSession.getAttribute("personne") != null) {
 			ModelAndView mav = new ModelAndView();
 			
 			if(idAppel != null) {
-				mav.addObject(
-					"appel", 
-					appelService.recupererAppelParId(Integer.parseInt(idAppel))
-				);
+				mav.addObject("appel", appelService.recupererAppelParId(Integer.parseInt(idAppel)));
 			}
 
 			mav.addObject("idAppel", idAppel);
@@ -164,11 +143,7 @@ public class AppelsController {
 	
 	@GetMapping({"/appels", "/rafraichir"})
 	public ModelAndView appelsGet(
-		@PageableDefault(
-			size = 20,
-			sort = "dateHeure",
-			direction = Sort.Direction.DESC
-		) Pageable pageable
+		@PageableDefault(size = 20, sort = "dateHeure", direction = Sort.Direction.DESC) Pageable pageable
 	) {
 		if(httpSession.getAttribute("personne") != null) {
 			ModelAndView mav = new ModelAndView();
@@ -185,30 +160,64 @@ public class AppelsController {
 		}
 	}
 	
+	/*
+	 * To sort ascending or descending columns.  
+	 */
+	@GetMapping("/filtrer")
+	public ModelAndView filtrerGet(
+		@PageableDefault(size = 20, sort = "dateHeure", direction = Sort.Direction.DESC) Pageable pageable,
+		@RequestParam Map<String, String> post
+	) throws ParseException {
+		if(httpSession.getAttribute("personne") != null) {
+			//We only recover the keys / values which are not empty and equal to -1.
+			Map<String, String> map = new HashMap<>();
+			for(String cle : post.keySet()) {
+				if(! (post.get(cle).isEmpty()) && ! post.get(cle).equals("-1")) {
+					map.put(cle, post.get(cle));
+				}
+			}
+	
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(map, pageable));
+			mav.addObject("agences", agenceService.recupererAgences());
+			mav.addObject("annonces", annonceService.recupererAnnonces());
+			mav.addObject("origines", origineService.recupererOrigines());
+			mav.addObject("personnes", personneService.recupererPersonnes());
+			mav.addObject("typeAppelants", typeAppelantService.recupererTypeAppelants());
+			mav.setViewName("appels");
+			return mav;
+		} else {
+			return new ModelAndView("redirect:index");
+		}
+	}
+	
+	
 	@PostMapping("/filtrer")
 	public ModelAndView filtrerPost(
+		@PageableDefault(size = 20,	sort = "dateHeure",	direction = Sort.Direction.DESC) Pageable pageable,
 		@RequestParam Map<String, String> post
-	) {
-		Map<String, String> map = new HashMap<>();
-		// On récupère uniquement les clés/valeurs qui ne sont pas vide et égale à -1.
-		for(String cle : post.keySet()) {
-			if(! (post.get(cle).isEmpty()) && ! post.get(cle).equals("-1")) {
-				map.put(cle, post.get(cle));
-				//System.out.println(cle + " : " + post.get(cle));
+	) throws ParseException {
+		if(httpSession.getAttribute("personne") != null) {
+			//We only recover the keys / values which are not empty and equal to -1. 
+			Map<String, String> map = new HashMap<>();
+			for(String cle : post.keySet()) {
+				if(! (post.get(cle).isEmpty()) && ! post.get(cle).equals("-1")                                                   /*&& ! cle.substring(0, cle.length()-1).equals("mySelect")*/) {
+					map.put(cle, post.get(cle));
+				}
 			}
-		}
 
-		ModelAndView mav = new ModelAndView();
-		System.out.println(appelService.recupererAppelsFiltrer(map));
-		// Plantage à cause de la pagination qui n'existe pas.
-		//mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(map));
-		mav.addObject("agences", agenceService.recupererAgences());
-		mav.addObject("annonces", annonceService.recupererAnnonces());
-		mav.addObject("origines", origineService.recupererOrigines());
-		mav.addObject("personnes", personneService.recupererPersonnes());
-		mav.addObject("typeAppelants", typeAppelantService.recupererTypeAppelants());
-		mav.setViewName("appels");
-		return mav;
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(map, pageable));
+			mav.addObject("agences", agenceService.recupererAgences());
+			mav.addObject("annonces", annonceService.recupererAnnonces());
+			mav.addObject("origines", origineService.recupererOrigines());
+			mav.addObject("personnes", personneService.recupererPersonnes());
+			mav.addObject("typeAppelants", typeAppelantService.recupererTypeAppelants());
+			mav.setViewName("appels");
+			return mav;
+		} else {
+			return new ModelAndView("redirect:index");
+		}
 	}
 }
 

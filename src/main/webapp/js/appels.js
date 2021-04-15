@@ -6,7 +6,9 @@ let lastValueFilter1;
 let lastValueFilter2;
 let lastValueFilter3;
 
-/* Affiche l'input de l'option sélectionné. */
+
+/* Display the input of the selected selection. */ 
+
 function refreshFilter1(){
 	let filter1 = document.querySelector("#filter1_param");
 	let value = filter1.options[filter1.selectedIndex].value;

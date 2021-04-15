@@ -3,6 +3,7 @@
 body{
   	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	position: absolue;
   	/* background: url("../img/bkg.jpg");
   	background-size: cover;
   	background-position: center; */
@@ -14,14 +15,20 @@ input:not(.button){
 
 
 /* HEADER */
-/*
-nav{
+
+#header{
+	position: relative;
 	position: fixed;
+    position: absolue;
+    width: 100%;
+    z-index:9999;
 }
 
-form{
+#h1-form{
 	position: fixed;
-}*/
+	position: relative;
+    width: 100%;
+}
 
 .liste-utilisateur:hover, .liste-appels:hover{
 	color: rgba(255,255,255) !important;

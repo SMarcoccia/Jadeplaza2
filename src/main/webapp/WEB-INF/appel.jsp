@@ -1,10 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-	<jsp:include page="header.jsp">
-    	<jsp:param name="style_css" value="css/appel.css"/>
-    </jsp:include>
+
+	<head>
+		<jsp:include page="head.jsp">
+	    	<jsp:param name="style_css" value="css/appel.css"/>
+	    </jsp:include>
+	</head>
+	
+	<body>
+	
+	<jsp:include page="header.jsp"/>
 	
 	<main>
 		<div class="container">
@@ -24,19 +32,20 @@
 					
 					<div class="form-group row">
 						<form:label class="col-4" path="agence">Agence concernée</form:label>
-						<form:select path='agence' class="form-control py-1 col-8 " style="width: 200px" autocomplete='true' null="null">
+						<form:select 
+							path='agence' class="form-control py-1 col-8 " style="width: 200px" autocomplete='true' 
+							null="null">
 	         				<form:option value="${ agences.get(0).id }">${ agences.get(0).nom }</form:option>
 	   						<%-- <form:options items="${ agences }" itemValue="id" itemLabel="nom"/> --%>
 						</form:select>
 					</div>
 						
 					<div class="form-group row">
-					<%--Personne en fait suiviPar, ajouter les initiales dans la colonne destinataire --%>
-					<%-- Ajouter value si on modifie --%>
 						<form:label class="col-4" path="suiviPar">Destinataire(s)</form:label>
 				   		<div class="d-flex justify-content-between col-8 px-0">
 							<div class="form-group">	
-							   	<form:select class="form-control py-1 col-4" style="width: 200px" path='suiviPar' autocomplete='true' null="null">
+							   	<form:select class="form-control py-1 col-4" style="width: 200px" path='suiviPar' 
+							   		autocomplete='true' null="null">
 								   	<form:option value='-1'>?</form:option>
 									<form:options items="${ personnes }" itemValue="id" itemLabel="nom"/>
 								</form:select>
@@ -88,7 +97,8 @@
 	
 					<div class="form-group row">				
 						<form:label class="col-4" path="email">Email</form:label>
-						<form:input class="form-control py-0 col-8" style="width: 200px" type="text" size="30" path="email" value=""/>
+						<form:input class="form-control py-0 col-8" style="width: 200px" type="email" size="30" path="email" value=""/>
+						<form:errors path="email"><span style="color:#B94A48" class="help-block">L'email n'est pas correcte</span></form:errors>
 					</div>					
 					
 					<div class="form-group row d-flex">
@@ -159,3 +169,4 @@
 	</main>
 	
 	<jsp:include page="footer.jsp"/>
+	</body>
