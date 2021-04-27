@@ -16,6 +16,8 @@ public interface AppelDao extends JpaRepository<Appel, Integer> {
 	@Query(value="SELECT * FROM phone_call ph_c WHERE ph_c." + PHONECALLID + " = :id", nativeQuery=true)
 	Appel findAppel(@Param("id") Integer id);
 
+	Appel findById(int id);
+	
 	@Query(value="SELECT * FROM phone_call ph WHERE ph.followedby = :id", nativeQuery=true)
 	Page<Appel> findAllById(@Param("id") int id, Pageable pageable);
 }

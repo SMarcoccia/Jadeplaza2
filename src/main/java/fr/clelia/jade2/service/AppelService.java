@@ -12,14 +12,12 @@ import fr.clelia.jade2.business.Appel;
 public interface AppelService {
 	
 	Page<Appel> recupererMesAppels(int id, Pageable pageable);
-
 	List<Appel> recupererAppels();
 	Page<Appel> recupererAppels(Pageable pageable);
-	
-	Appel recupererAppelParId(Integer id);
-	
+	Appel recupererAppelParId(int id);
+	Appel modifierAppel(Appel appel);
 	Appel ajouterAppel(Appel appel);
-	
-	//Page<Appel> recupererAppelsFiltrer(Map<String, String> map, Pageable pageable);
 	Page<Appel> recupererAppelsFiltrer(Map<String, String> map, Pageable pageable) throws ParseException;
 }
+
+

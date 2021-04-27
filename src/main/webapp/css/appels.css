@@ -3,17 +3,23 @@
 body{
   	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	position: absolue;
-  	/* background: url("../img/bkg.jpg");
-  	background-size: cover;
-  	background-position: center; */
 }
 
 input:not(.button){
 	font-size: 14px !important;
 }
 
+input[name*="AV"],
+input[name*="BV"],
+input[name*="CV"]{
+	width: 195px;
+}
 
+select[id*="AV"],
+select[id*="BV"],
+select[id*="CV"]{
+	width: 195px;
+}
 /* HEADER */
 
 #header{
@@ -24,10 +30,63 @@ input:not(.button){
     z-index:9999;
 }
 
-#h1-form{
-	position: fixed;
+#h1{
+	/*position: relative;*/
+	/*position: fixed;
+    position: absolue;
+    width: 100%;*/
+   	padding-top: 100px;
+}
+/*
+
+#nbAppels{
 	position: relative;
+	position: fixed;
+    position: absolue;
     width: 100%;
+   	padding-top: 195px;
+}
+
+#form{
+	position: relative;
+	position: fixed;
+    width: 100%;
+   	padding-top: 228px;
+}
+*/
+#table{
+	/*position: absolute;
+	margin-top: 375px;*/
+	font-size: 10px;
+	width: 320% !important;
+}
+
+#table thead tr{
+	text-align: center;
+}
+
+#table thead tr th {
+	width: 100px;
+}
+
+#table thead tr th a{
+	font-size:20px;
+	margin: 0 10px;
+ 	text-decoration:none;
+}
+
+#table #tbody tr {
+	text-align: center;
+}
+
+#table #td-objet-appel-commentaire{
+	text-align: justify;
+	width: 300px
+}
+
+#table #tbody #td-action-commentaire{
+	text-align: justify;
+	width: 150px
 }
 
 .liste-utilisateur:hover, .liste-appels:hover{
@@ -43,11 +102,6 @@ header nav div .deconnexion:hover{
 }
 
 /* MAIN */
-
-table{
-	font-size: 10px;
-	width: 230% !important;
-}
 
 .button{
 	font-size: 12px;
@@ -82,10 +136,160 @@ table{
 }
 
 
+@media (min-width: 768px) and (max-width: 990px){
+	#header{
+		position: relative;
+		position: fixed;
+	   	position: absolue;
+	   	width: 100%;
+   	    z-index:9999;
+	}
+	
+	#h1{
+		/*position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	   	padding-top: 100px;*/
+	   	text-align: center;
+	}
+	
+	.filter,
+	.filter1
+	#filter1_param,
+	#filter2_param,
+	#filter3_param,
+	.filtre2Bis_1,
+	.filtre2Bis_2,
+	.filtre2Bis_3,
+	#filtrer {
+		/*margin-left: 40px;
+		display: flex !important;
+		flex-direction: row !important;*/
+		/*position: fixed;
+		margin-top: 165px;*/
+		/*margin-top: 275px;*/
+		margin: 5px auto;
+	}
+	
+	.filter1-select,
+	.filter2-select,
+	.filter3-select{
+		margin: 0 93px;
+	}
+	
+/*	
+	#nbAppels{
+		position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	   	padding-top: 195px;
+	}
+	
+	#form{
+		position: relative;
+		position: fixed;
+	    width: 100%;
+	   	padding-top: 228px;
+	}*/
+	
+	#table{
+		/*position: absolute;
+		margin-top: 375px;*/
+		font-size: 10px;
+		width: 320% !important;
+	}
+	
+	#table .filter{
+		margin-left: auto;
+	}
+}
+  
+@media (max-width: 767px){
+	#header{
+		position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	    z-index:9999;
+	}
+	/*
+	#h1{
+		position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	   	padding-top: 100px;
+	}
+	
+	#nbAppels{
+		position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	   	padding-top: 195px;
+	}
+	
+	#form{
+		position: relative;
+		position: fixed;
+	    position: absolue;
+	    width: 100%;
+	   	padding-top: 228px;
+	   	z-index:9998;
+	}*/
+	
+	.filter,
+	.filter1
+	#filter1_param,
+	#filter2_param,
+	#filter3_param,
+	.filtre2Bis_1,
+	.filtre2Bis_2,
+	.filtre2Bis_3,
+	#filtrer {
+		/*margin-left: 40px;
+		display: flex !important;
+		flex-direction: row !important;*/
+		/*position: fixed;
+		margin-top: 165px;*/
+		/*margin-top: 275px;*/
+		margin: 5px auto;
+	}
+	
+	.filter1-select,
+	.filter2-select,
+	.filter3-select{
+		margin: 0 93px;
+	}
+	/*
+	#input-filtrer{
+		margin-right: 40px;
+		width: 100px;
+		height: 20px;
+	}
+	
+	#enlever-filtre{
+		width: 100px;
+		height: max-content;
+	}
+	
+	main form div div .filter1{
+		margin-left: 47px;
+	}*/
 
-
-
-
+	/*#table{*/
+		/*position: absolute;
+		margin-top: 545px;*/
+		/*font-size: 10px;
+		width: 320% !important;
+	}*/
+	
+	.filter1{
+		margin: 0 auto;
+	}
+}
 
 						
 

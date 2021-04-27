@@ -1,7 +1,8 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <header id=header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-flex align-items-center">
+	<nav class="col-md-12 col-sm-12 navbar navbar-expand-lg navbar-dark bg-primary d-flex align-items-center">
 		<div class=container>
 			<span class="navbar-brand">CLELIA</span>
 			<div class="collapse navbar-collapse" id="navbarColor01">
@@ -25,4 +26,5 @@
 		</div>
 	</nav>
 </header>
+	
 	

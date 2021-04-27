@@ -16,6 +16,7 @@
 	
 	<main>
 		<div class="container">
+		
 	   		<h1 class="text-center mb-5 mt-1">
 	   			<c:choose>
 	   				<c:when test="${ idAppel eq null }">Ajouter</c:when>
@@ -77,7 +78,7 @@
 			
 					<div class="form-group row">				
 						<form:label class="col-4" path="nom">Nom</form:label>
-						<form:input class="form-control py-0 col-8" style="width: 200px" type="text" size="30" path="nom" value=""/>
+						<form:input class="form-control py-0 col-7" style="width: 200px;" type="text" size="30" path="nom" value=""/>
 					</div>						
 	
 					<div class="form-group row">				
@@ -98,7 +99,7 @@
 					<div class="form-group row">				
 						<form:label class="col-4" path="email">Email</form:label>
 						<form:input class="form-control py-0 col-8" style="width: 200px" type="email" size="30" path="email" value=""/>
-						<form:errors path="email"><span style="color:#B94A48" class="help-block">L'email n'est pas correcte</span></form:errors>
+						<span style="color:#B94A48" class="help-block"><form:errors path="email"></form:errors></span>
 					</div>					
 					
 					<div class="form-group row d-flex">
@@ -156,6 +157,8 @@
 							<form:radiobutton class="form-check-input" path="estTermine" value="1"/>
 						</div>
 					</div>
+					
+					<td><form:hidden  path="id"/></td>
 					
 	    			<div class="row px-0 my-5">
 	    				<div class="offset-4 col-4">

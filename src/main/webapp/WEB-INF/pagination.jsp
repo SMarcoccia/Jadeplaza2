@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
-	<div class="d-flex justify-content-center">
+	<div id="pagination" class="d-flex justify-content-center">
 		<nav aria-label="Page navigation">
 		  	<ul class="pagination">
 		        <c:if test="${page != 0}">
@@ -12,7 +12,7 @@
 		        	</li>
 		        </c:if>
 		        
-				<!-- Si le nombre de page est inférieur à 5, j'affiche toutes les pages -->
+				<!-- If the number of pages is less than 5, I display all the pages  -->
 		        <c:if test="${nbPages <= 5 }">
 		            <c:forEach var="i" begin="1" end="${nbPages}">
 		                <c:if test="${page != i - 1}">
@@ -28,7 +28,7 @@
 		            </c:forEach>
 		        </c:if>
 		
-				<!-- Affichage des nombres de page -->
+				<!-- Display of page numbers  -->
 		        <c:if test="${pageDAppels.getTotalPages() > 5 }">
 		        	<c:if test="${pageDAppels.number - 1 > 2}">
 		            	<li class="page-item">

@@ -71,7 +71,7 @@ public class AuthentificationController {
 		}
 		else {
 			ModelAndView mav = new ModelAndView("connexion");
-			mav.addObject("notification", "Pseudo ou mot de passe incorrect.");
+			mav.addObject("notification", "Email ou mot de passe incorrect.");
 			return mav;
 		}
 	}

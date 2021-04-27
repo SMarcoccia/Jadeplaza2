@@ -16,16 +16,16 @@
 		<jsp:include page="header.jsp"/>
 		
 		<main>
-			<div id=container class="container">
-				<div id="h1-form">
-				<h1 id="h1" class="text-center mb-5">Liste des appels</h1>
-	    		<p>Nb d'appels : ${pageDAppels.getTotalElements () }</p>
-	            <form action="filtrer" method="post" autocomplete="off">
-   					<div class="row mb-3">
-						<!-- DEBUT 1er COLONNE SUR 3-->
-		    			<div class="col-5">
-		    			
-					        <div class="row ">
+			<div class="container">
+				<div class=row>
+					<h1 id="h1" class="col-md-12 col-sm-12 text-center mb-5">Liste des appels</h1>
+				</div>
+	    		<p id=nbAppels >Nb d'appels : ${ pageDAppels.getTotalElements () }</p>
+	            <form id=form action="filtrer" method="post" class=row>
+   					<div class="row mb-3 align-item-center">
+						<!-- DEBUT 1er COLONNE -->
+		    			<div class="col-md-5">
+					        <div class="row" style="margin-right: 12px;">
 	        	            	<div class="d-flex justify-content-between mb-3">
 	                            	<a href="/ajouter-un-appel" class="button btn btn-primary py-0">Nouvel Appel</a>
 	                	        	<a href="/rafraichir" class="button btn btn-primary py-0">Rafraichir</a>
@@ -34,36 +34,37 @@
 		                	</div>
 		                	
 		                	<div class="row">
-	        	       			<div class="col-5">
+	        	       			<div class="col-md-7 col-sm-7 col-xs-7">
 	               					<div class="form-check">
 	            	   					<input class="form-check-input" type="radio" name="CP" id="CP1" value="1"/>
 	                	  				<label class="form-check-label" for="CP1">Appels traités</label>
 	   	        					</div>
-	       	    					<div class="form-check">
-	            						<input class="form-check-input" type="radio" name="CP" id="CP2" checked value="0"/>
-	            						<label class="form-check-label" for="CP2">Appels non traités</label>
-		           					</div>
-			    				</div>
-	        					<div class="col-7">
-	            					<div class="form-check">
+		          					<div class="form-check">
 	           	      					<input class="form-check-input" type="radio" name="CP" id="CP4" value="2"/>
 		           	      				<label class="form-check-label" for="CP4">Appels en cours de traitement</label>
 	    	       					</div>
+			    				</div>
+	        					<div class="col-md-5 col-xs-5">
+  	       	    					<div class="form-check">
+	            						<input class="form-check-input" type="radio" name="CP" id="CP2" checked value="0"/>
+	            						<label class="form-check-label" for="CP2">Appels non traités</label>
+		           					</div>
 	        						<div class="form-check">
 	                  					<input class="form-check-input" type="radio" name="CP" id="CP3" value="3"/>
 	   	        	  					<label class="form-check-label" for="CP3">Tous</label>
 	       	    					</div>
 	       						</div>
 		                	</div>
-		    			
-	    				</div> <!-- FIN 1er COLONNE -->			
-	    				<!-- DEBUT 2e COLONNE -->
-		   				<div class="col-6 filter d-flex justify-content-between">
-							<!-- FILTRE -->
+	    					</div> <!-- END OF 1st COLUMN -->			
+	    				<!-- DEBUT 2e COLUMN : LISTES -->
+		   				<div class="col-md-6 filter d-flex justify-content-between px-0">
 	    					<div class="filter1">
 	    						<div class="row mb-4">
-	    							<div class="col-7" style="width: 250px">
-		        						<select name="mySelect1" class="form-select py-0" id="filter1_param" onChange="refreshFilter1()">
+	    							<div class="filter1-select col-md-7" style="width: 250px">
+		        						<select 
+		        							name="mySelect1" class="form-select py-0" 
+		        							id="filter1_param" 
+		        							onChange="refreshFilter1()">
 		     								<option value="-1">Sélectionnez</option>
 		     								<option value="1" >Date & Heure</option>
 		     								<option value="2" >Agence concernée</option>
@@ -87,7 +88,7 @@
 	        						
 									<!-- DATE -->
 									<!-- ATTENTION DATE OBLIGATOIRE POUR LES 2 -->
-		 							<div class="filtre2Bis_1 col-5 w-auto">
+		 							<div class="filtre2Bis_1 col-md-5 w-auto">
 		 	        					<div id="A1">
 		 	        						<label for="AV1" class="form-check-label">Entre</label>
 		     	    						<input id='AV1' name="AV1" type="date" class="py-0 form-control"/>
@@ -107,10 +108,18 @@
 		         					
 		 		    					<!-- DESTINAIRE(S) -->
 		     						   	<div id="A3">
-		 							   		<select class="py-0 form-select" id='AV3' name='AV3'>
+		 							   		<select 
+		 							   			class="py-0 form-select" 
+		 							   			id='AV3' 
+		 							   			name='AV3'>
 		 		   								<option value='-1'>?</option>
-												<c:forEach items="${ personnes }" var="personne">
-			   										<option value="${ personne.id }">${ personne.nom }</option>
+												<c:forEach 
+													items="${ personnes }" 
+													var="personne">
+			   										<option 
+			   											value="${ personne.id }">
+			   											${ personne.nom }
+			   										</option>
 		   										</c:forEach>
 		 									</select>
 		 								</div>
@@ -203,7 +212,7 @@
 	 		    				
 	        					<!-- FILTRE 2 -->
 		 		   				<div class="row mb-4">
-		 		   					<div class="col-7" style="width: 250px">
+		 		   					<div class="filter2-select col-7" style="width: 250px">
 		     	    					<select name="mySelect2" class="form-select py-0" id="filter2_param" onChange="refreshFilter2()">
 		        							<option value="-1">Sélectionnez</option>
 		     								<option value="1">Date & Heure</option>
@@ -257,10 +266,10 @@
 		 						
 		 								<!-- TYPE D'APPELANT -->
 		     							<div id="B4">
-		 									<select class="py-0 form-select" id='BV4' name='BV4'>
+		 									<select style="width: 195px;" class="py-0 form-select" id='BV4' name='BV4'>
 		 										<option value='-1'>?</option>
 												<c:forEach items="${ typeAppelants }" var="typeAppelant">
-			   										<option value="${ typeAppelant.id }">${ typeAppelant.nom }</option>
+			   										<option style="width: 195px;" value="${ typeAppelant.id }">${ typeAppelant.nom }</option>
 		   										</c:forEach>
 		 									</select>
 		 								</div>
@@ -342,7 +351,7 @@
 	     	    				</div>
 	        					<!-- FILTRE 3 -->
 		        				<div class="row mb-4">
-		        					<div class="col-7" style="width: 250px">
+		        					<div class="filter3-select col-7" style="width: 250px">
 		     	    					<select name="mySelect3" class="form-select py-0" id="filter3_param" onChange="refreshFilter3()">
 		     								<option value="-1">Sélectionnez</option>
 		 	    							<option value="1">Date & Heure</option>
@@ -406,7 +415,7 @@
 		    						
 		    							<!-- NOM -->
 		       							<div id="C5">
-		   									<input type="text" name="CV5"/>
+		   									<input class="py-0 form-control" type="text" name="CV5"/>
 		   								</div>
 		   						
 		   								<!-- PRENOM -->
@@ -481,47 +490,100 @@
 		        				</div>
 		   					</div>		   					
 						</div><!-- FIN 2e COLONNE -->
-	 					<!-- DEBUT 3e COLONNE -->
-		   				<div class="col-1 d-flex flex-column jutify-content-end px-0">
-	      					<input type="submit" value="Filtrer" class="button btn btn-primary mb-3 py-0 px-0">
-	       					<a href="/enlever-filtre" class="button btn btn-primary py-0 px-0">Enlever Filtre</a>
+	 					<!-- DEBUT BOUTON VALIDATION 3e COLONNE -->
+		   				<div class="col-md-1 col-offset-5 col-3 d-flex flex-column jutify-content-end px-0" id=filtrer>
+   							<input id=input-filtrer type="submit" value="Filtrer" class="button btn btn-primary mb-3 py-0 px-0">
+       						<a id=enlever-filtre href="/enlever-filtre" class="button btn btn-primary py-0 px-0">Enlever Filtre</a>
 	    				</div> <!-- FIN 3e COLONNE -->
-	    				
 	    			</div>
 				</form>
-   				<table id="table" class="table table-bordered mx-1">
+			</div>
+			<div class="container">
+				<table id="table" class="table table-bordered mx-1">
     				<thead>
 						<tr>
 							<th>SERVICE</th>
-							<th>DATE ET HEURE
-								<a href="?sort=dateHeure,desc">trier</a>
-								<a href="?sort=dateHeure,asc">trier</a>
+							<th>DATE ET HEURE <br>
+								<div>
+									<a href="?sort=dateHeure,desc">&#x27F0;</a>
+									<a href="?sort=dateHeure,asc">&#x27F1;</a>
+								</div>
 							</th>
-							<th>AGENCE <a href="?sort=agence.nom">trier</a></th>
-							<th>DESTINATAIRE <a href="?sort=recuPar.initiales">trier</a></th>
-							<th>TYPE D'APPELANT<a href="?sort=typeAppelant.nom">trier</a></th>
-							<th>NOMS <a href="?sort=nom">trier</a></th>
-							<th>PRENOMS <a href="?sort=prenom">trier</a></th>
-							<th>N. DE MOBILE <a href="?sort=mobile">trier</a></th>
-							<th>N. DE FIXE <a href="?sort=telephone">trier</a></th>
-							<th>EMAIL <a href="?sort=email">trier</a></th>
-							<th>OBJET DE L'APPEL/COMMENTAIRE <a href="?sort=objet">trier</a></th>
-							<th>SUPPORT DE PUB <a href="?sort=annonce.nom">trier</a></th>
-							<th>ORIGINE CONTACT <a href="?sort=origine.nom">trier</a></th>
-							<th>TYPE CONTACT <a href="#">trier</a></th>
-							<th>NOM DU MANDAT <a href="?sort=nomDuMandat">trier</a></th>
-							<th>SAISIE PAR <a href="?sort=recuPar.initiales">trier</a></th>
-							<th>VU <a href="?sort=estAccuse">trier</a></th>
-							<th>ACTIONS/COMMENTAIRE <a href="?sort=pageDAppels">trier</a></th>
-							<th>TRAITE <a href="?sort=estTermine">trier</a></th>
+							<th>AGENCE <br>
+								<a href="?sort=agence.nom,desc">&#x27F0;</a>
+								<a href="?sort=agence.nom,asc">&#x27F1;</a>
+							</th>
+							<th>DESTINATAIRE <br>
+								<a href="?sort=recuPar.initiales,desc">&#x27F0;</a>
+								<a href="?sort=recuPar.initiales,asc">&#x27F1;</a>
+							</th>
+							<th>TYPE D'APPELANT <br>
+								<a href="?sort=typeAppelant.nom,desc">&#x27F0;</a>
+								<a href="?sort=typeAppelant.nom,asc">&#x27F1;</a>
+							</th>
+							<th>NOMS <br>
+								<a href="?sort=nom,desc">&#x27F0;</a>
+								<a href="?sort=nom,asc">&#x27F1;</a>
+							</th>
+							<th>PRENOMS <br>
+								<a href="?sort=prenom,desc">&#x27F0;</a>
+								<a href="?sort=prenom,asc">&#x27F1;</a>
+							</th>
+							<th>N. DE MOBILE <br>
+								 <a href="?sort=mobile,desc">&#x27F0;</a>
+								 <a href="?sort=mobile,asc">&#x27F1;</a>
+							 </th>
+							<th>N. DE FIXE <br>
+								 <a href="?sort=telephone,desc">&#x27F0;</a>
+								 <a href="?sort=telephone,asc">&#x27F1;</a>
+							 </th>
+							<th>EMAIL <br>
+								<a href="?sort=email,desc">&#x27F0;</a>
+								<a href="?sort=email,asc">&#x27F1;</a>
+							</th>
+							<th>OBJET DE L'APPEL/COMMENTAIRE <br>
+								 <a href="?sort=objet,desc">&#x27F0;</a>
+								 <a href="?sort=objet,asc">&#x27F1;</a>
+							</th>
+							<th>SUPPORT DE PUB <br>
+								<a href="?sort=annonce.nom,desc">&#x27F0;</a>
+								<a href="?sort=annonce.nom,asc">&#x27F1;</a>
+							</th>
+							<th>ORIGINE CONTACT <br>
+								<a href="?sort=origine.nom,desc">&#x27F0;</a>
+								<a href="?sort=origine.nom,asc">&#x27F1;</a>
+							</th>
+							<th>TYPE CONTACT <br>
+								<a href="?sort=origine.nom,desc">&#x27F0;</a>
+								<a href="?sort=origine.nom,asc">&#x27F1;</a>
+							</th>
+							<th>NOM DU MANDAT <br>
+								<a href="?sort=nomDuMandat,desc">&#x27F0;</a>
+								<a href="?sort=nomDuMandat,asc">&#x27F1;</a>
+							</th>
+							<th>SAISIE PAR <br>
+								<a href="?sort=recuPar.initiales,desc">&#x27F0;</a>
+								<a href="?sort=recuPar.initiales,asc">&#x27F1;</a>
+							</th>
+							<th>VU <br>
+								<a href="?sort=estAccuse,desc">&#x27F0;</a>
+								<a href="?sort=estAccuse,asc">&#x27F1;</a>
+							</th>
+							<th>ACTIONS/COMMENTAIRE <br>
+								<a href="?sort=suivre,desc">&#x27F0;</a>
+								<a href="?sort=suivre,asc">&#x27F1;</a>
+							</th>
+							<th>TRAITE <br>
+								<a href="?sort=estTermine,desc">&#x27F0;</a>
+								<a href="?sort=estTermine,asc">&#x27F1;</a>
+							</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
 						<c:forEach items="${ pageDAppels.content }" var="appel">
 							<tr id="tr">
 								<td style="display: none">${appel.id }</td>
-								<td>
-									<a 
+								<td><a 
 										href="/ajouter-un-appel?idAppel=${appel.id}" 
 										class="btnAction btn btn-warning m-1">
 										Modifier
@@ -540,7 +602,7 @@
 								<td>${ appel.mobile }</td>
 								<td>${ appel.telephone }</td>
 								<td>${ appel.email }</td>
-								<td>${ appel.objet }</td>
+								<td id=td-objet-appel-commentaire>${ appel.objet }</td>
 								<td>${ appel.annonce.nom }</td>
 								<td>${ appel.origine.nom }</td>
 								<td></td>
@@ -550,7 +612,7 @@
 									<c:if test="${ appel.estAccuse }">Oui</c:if>
 									<c:if test="${ ! appel.estAccuse }">Non</c:if>
 								</td>
-								<td>${ appel.suivre }</td>
+								<td id=td-action-commentaire>${ appel.suivre }</td>
 								<td>
 									<c:choose>
 										<c:when test="${ appel.estTermine eq 1}">
@@ -566,13 +628,8 @@
 						</c:forEach> 
 					</tbody>
    				</table>
-				
-				
-				</div>
-
 			</div>
 
-   				
 			<jsp:include page="pagination.jsp"/>
 
 		</main>

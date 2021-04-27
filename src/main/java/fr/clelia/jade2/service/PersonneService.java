@@ -12,4 +12,8 @@ public interface PersonneService {
 	Personne recupererPersonneParEmailEtMotDePasse(String email, String motDePasseCompteWeb);
 	List<Personne> recupererPersonnes();
 	Page<Personne> recupererPersonnes(Pageable pageable);
+	
+	Personne recupererPersonneParId(int id);
+	
+	Personne ajouterPersonne(Personne personne );
 }

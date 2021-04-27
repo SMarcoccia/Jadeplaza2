@@ -8,4 +8,6 @@ import fr.clelia.jade2.business.Personne;
 public interface PersonneDao extends JpaRepository<Personne, Integer> {
 	
 	Personne findByEmailAndMotDePasse(String email, String motDePasseCompteWeb);
+	
+	Personne findById(int id);
 }

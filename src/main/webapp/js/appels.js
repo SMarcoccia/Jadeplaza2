@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 /*window.addEventListener('load', function () {
   console.log('Cette fonction est exécutée une fois quand la page est chargée.');
 });*/
@@ -50,6 +53,9 @@ function refreshFilter3(){
 	champsC.style.display = "block";
 	lastValueFilter3 = value;
 }
+
+let table = document.querySelector("#table");
+table.srcollTop = table.scrollHeight;
 
 /*document.querySelector('#AV1').valueAsDate = new Date();
 document.querySelector('#AV1Bis').valueAsDate = new Date();

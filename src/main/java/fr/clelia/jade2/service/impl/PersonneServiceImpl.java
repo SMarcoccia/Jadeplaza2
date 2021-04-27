@@ -36,4 +36,15 @@ public class PersonneServiceImpl implements PersonneService {
 	public List<Personne> recupererPersonnes(){
 		return personneDao.findAll();
 	}
+	
+	@Override
+	public Personne ajouterPersonne(Personne personne) {
+		return personneDao.save(personne);
+	}
+	
+	@Override
+	public Personne recupererPersonneParId(int id) {
+		//return appelDao.findPersonne(id).orElse(null);
+		return personneDao.findById(id);
+	}
 }

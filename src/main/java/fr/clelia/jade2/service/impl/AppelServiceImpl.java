@@ -3,8 +3,10 @@ package fr.clelia.jade2.service.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,21 +34,16 @@ public class AppelServiceImpl implements AppelService {
 
 	private final int MAX_RESULT_FILTRE = 20;
 	private AppelDao appelDao;
-	//private JdbcTemplate jdbcTemplate;
+
 	@PersistenceContext
 	private EntityManager em;
-
-	
 	
 	public AppelServiceImpl(
 		AppelDao appelDao
-		//JdbcTemplate jdbcTemplate
 	) {
 		super();
 		this.appelDao = appelDao;
-		//this.jdbcTemplate = jdbcTemplate;
 	}                                                     
-	
 	
 	
 	@Override
@@ -65,14 +62,20 @@ public class AppelServiceImpl implements AppelService {
 	}
 	
 	@Override
+	public Appel modifierAppel(Appel appel) {
+		return appelDao.save(appel);
+	}
+		
+	@Override
 	public Appel ajouterAppel(Appel appel) {
 		return appelDao.save(appel);
 	}
 	
 	@Override
-	public Appel recupererAppelParId(Integer id) {
+	public Appel recupererAppelParId(int id) {
+		return appelDao.findById(id);
 		//return appelDao.findAppel(id).orElse(null);
-		return appelDao.findAppel(id);
+		//return appelDao.findAppel(id);
 	}
 	
 	//////////////////////////// * POUR LA REQUËTE DU FILTRE * /////////////////////////////
@@ -105,11 +108,16 @@ public class AppelServiceImpl implements AppelService {
 		if(map.containsKey("mySelect1")) {
 			
 		    if(  map.get("AV1") != null &&  map.get("AV1Bis") != null){
-		        predicates.add(cb.between(appel.get("dateHeure"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1")+" 00:00:00"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1Bis") + " 23:59:59")));
+	
+		        predicates.add(
+	        		cb.between(appel.get("dateHeure"), 
+    				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1")+" 00:00:00"), 
+    				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1Bis") + " 23:59:59"))
+	        	);
 		    }
 		    if(  map.get("AV2") != null){
 		        predicates.add(cb.equal(appel.get("agence"), Integer.parseInt(map.get("AV2"))));
-		    }
+		    }	    	// Note the parse method throws an exception if it fails so we have to throw it. 
 		    if(  map.get("AV3") != null){
 		        predicates.add(cb.equal(appel.get("suiviPar"), Integer.parseInt(map.get("AV3"))));
 		    }
@@ -155,12 +163,15 @@ public class AppelServiceImpl implements AppelService {
 		}
 	
 		// DEBUT FILTRE B
+		System.out.println("\n\n");
+    	System.out.println("mySelect2 : " + map.get("mySelect2"));
+    	System.out.println("\n\n");
 		if(map.containsKey("mySelect2")) {
 		    if(  map.get("BV1") != null &&  map.get("BV1Bis") != null){
-		        predicates.add(
-		        	cb.between(appel.get("dateHeure"), 
-		        	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1")+" 00:00:00"), 
-		        	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1Bis") + " 23:59:59")));
+		    	predicates.add(cb.between(appel.get("dateHeure"),
+	    				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("BV1")+" 00:00:00"), 
+	    				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("BV1Bis") + " 23:59:59")));
+		      //predicates.add(cb.between(appel.get("dateHeure"), map.get("AV1"), map.get("AV1Bis"))); //Génère une erreur de type format.
 		    }
 		    if(  map.get("BV2") != null){
 		        predicates.add(cb.equal(appel.get("agence"), Integer.parseInt(map.get("BV2"))));
@@ -210,9 +221,15 @@ public class AppelServiceImpl implements AppelService {
 		}
 	
 		// DEBUT FILTRE C
+		System.out.println("\n\n");
+    	System.out.println("mySelect3 : " + map.get("mySelect3"));
+    	System.out.println("\n\n");
 		if(map.containsKey("mySelect3")) {
 		    if(  map.get("CV1") != null &&  map.get("CV1Bis") != null){
-		        predicates.add(cb.between(appel.get("dateHeure"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1")+" 00:00:00"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("AV1Bis") + " 23:59:59")));
+		        predicates.add(cb.between(appel.get("dateHeure"), 
+	    			new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("CV1")+" 00:00:00"), 
+	    			new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("CV1Bis") + " 23:59:59"))
+		        );
 		    }
 		    if(  map.get("CV2") != null){
 		        predicates.add(cb.equal(appel.get("agence"), Integer.parseInt(map.get("CV2"))));
