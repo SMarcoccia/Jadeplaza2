@@ -12,13 +12,16 @@ input:not(.button){
 input[name*="AV"],
 input[name*="BV"],
 input[name*="CV"]{
-	width: 195px;
+	padding: 0;
+	/*width: 195px;*/
 }
 
 select[id*="AV"],
 select[id*="BV"],
 select[id*="CV"]{
-	width: 195px;
+	padding: 0;
+	/*width: 195px;*/
+	font-size: 12px;
 }
 /* HEADER */
 
@@ -54,6 +57,18 @@ select[id*="CV"]{
    	padding-top: 228px;
 }
 */
+
+
+#filter1_param,
+#filter2_param,
+#filter3_param{
+	font-size: 12px;
+}
+/*
+form .filter{
+	font-size:12px;
+}*/
+
 #table{
 	/*position: absolute;
 	margin-top: 375px;*/
@@ -107,10 +122,10 @@ header nav div .deconnexion:hover{
 	font-size: 12px;
 }
 
-
+/*
 .filter .filter1 div select{
 	font-size: 12px;
-}
+}*/
 
 /*DATE ET HEURE*/
 #AV1, #AV1Bis,
@@ -136,6 +151,18 @@ header nav div .deconnexion:hover{
 }
 
 
+@media (min-width: 991px){
+	#filtrer div{
+		margin: auto 0;
+		display: flex;
+		flex-direction: flex-column;
+	}
+
+	/*#input-filtrer{
+		margin-bottom: 20px;
+	}*/
+}
+
 @media (min-width: 768px) and (max-width: 990px){
 	#header{
 		position: relative;
@@ -154,7 +181,7 @@ header nav div .deconnexion:hover{
 	   	text-align: center;
 	}
 	
-	.filter,
+	/*.filter,
 	.filter1
 	#filter1_param,
 	#filter2_param,
@@ -162,21 +189,21 @@ header nav div .deconnexion:hover{
 	.filtre2Bis_1,
 	.filtre2Bis_2,
 	.filtre2Bis_3,
-	#filtrer {
+	#filtrer {*/
 		/*margin-left: 40px;
 		display: flex !important;
 		flex-direction: row !important;*/
 		/*position: fixed;
 		margin-top: 165px;*/
 		/*margin-top: 275px;*/
-		margin: 5px auto;
-	}
-	
+		/*margin: 5px auto;
+	}*/
+	/*
 	.filter1-select,
 	.filter2-select,
 	.filter3-select{
 		margin: 0 93px;
-	}
+	}*/
 	
 /*	
 	#nbAppels{
@@ -204,9 +231,20 @@ header nav div .deconnexion:hover{
 	#table .filter{
 		margin-left: auto;
 	}
+	
+	#filtrer div{
+		margin: auto 0;
+		display: flex;
+		flex-direction: flex-column;
+	}
+
+	#input-filtrer{
+		margin-bottom: 20px;
+	}
 }
   
 @media (max-width: 767px){
+	
 	#header{
 		position: relative;
 		position: fixed;
@@ -239,7 +277,7 @@ header nav div .deconnexion:hover{
 	   	padding-top: 228px;
 	   	z-index:9998;
 	}*/
-	
+	/*
 	.filter,
 	.filter1
 	#filter1_param,
@@ -248,21 +286,21 @@ header nav div .deconnexion:hover{
 	.filtre2Bis_1,
 	.filtre2Bis_2,
 	.filtre2Bis_3,
-	#filtrer {
+	#filtrer {*/
 		/*margin-left: 40px;
 		display: flex !important;
 		flex-direction: row !important;*/
 		/*position: fixed;
 		margin-top: 165px;*/
 		/*margin-top: 275px;*/
-		margin: 5px auto;
-	}
-	
+		/*margin: 5px auto;
+	}*/
+	/*
 	.filter1-select,
 	.filter2-select,
 	.filter3-select{
 		margin: 0 93px;
-	}
+	}*/
 	/*
 	#input-filtrer{
 		margin-right: 40px;
@@ -285,9 +323,44 @@ header nav div .deconnexion:hover{
 		/*font-size: 10px;
 		width: 320% !important;
 	}*/
-	
+	/*
 	.filter1{
 		margin: 0 auto;
+	}*/
+	
+	.column1-filters{
+		margin-bottom: 20px;
+	}
+	
+	.column2-filter1,
+	.column2-filter2,
+	.column2-filter3{
+		display: flex;
+		justify-content: center;
+	} 
+	
+	.column2-filter2{
+		margin: 20px 0;	
+		padding: 0 3px;
+	    padding: inherit;
+	}
+	
+	.column2-filter2 div{
+	    padding: 0 3px;
+	}
+	
+	#filter1_param,
+	#filter2_param,
+	#filter3_param{
+		color: blue;
+	}
+	
+	#input-filtrer{
+		width: 97px;
+	}
+	
+	#enlever-filtre{
+		height: max-content;
 	}
 }
 
