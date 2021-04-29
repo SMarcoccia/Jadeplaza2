@@ -170,7 +170,7 @@ public class AppelController {
 			return new ModelAndView("redirect:index");
 		}
 	}
-	
+
 	/*
 	 * To sort the search results in descending or ascending order.  
 	 */
@@ -187,9 +187,9 @@ public class AppelController {
 					map.put(cle, post.get(cle));
 				}
 			}
-	
+			
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(map, pageable));
+			mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(saveMap, pageable));
 			mav.addObject("agences", agenceService.recupererAgences());
 			mav.addObject("annonces", annonceService.recupererAnnonces());
 			mav.addObject("origines", origineService.recupererOrigines());
@@ -205,6 +205,9 @@ public class AppelController {
 	/**
 	 * Display of search results.
 	 */
+
+	static Map<String, String> saveMap;
+	
 	@PostMapping("/filtrer")
 	public ModelAndView filtrerPost(
 		@PageableDefault(
@@ -220,7 +223,9 @@ public class AppelController {
 					map.put(cle, post.get(cle));
 				}
 			}
-
+			
+			saveMap = map;
+			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("pageDAppels", appelService.recupererAppelsFiltrer(map, pageable));
 			mav.addObject("agences", agenceService.recupererAgences());
