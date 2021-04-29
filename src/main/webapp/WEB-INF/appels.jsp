@@ -500,7 +500,7 @@
 				<table id="table" class="table table-bordered mx-1">
     				<thead>
 						<tr>
-							<th>SERVICE</th>
+							<th><div style="margin: 15px 0;">SERVICE</div></th>
 							<th>DATE ET HEURE <br>
 								<div>
 									<a href="?sort=dateHeure,desc">&#x27F0;</a>
@@ -580,7 +580,6 @@
 					<tbody id="tbody">
 						<c:forEach items="${ pageDAppels.content }" var="appel">
 							<tr id="tr">
-								<td style="display: none">${appel.id }</td>
 								<td><a 
 										href="/ajouter-un-appel?idAppel=${appel.id}" 
 										class="btnAction btn btn-warning m-1">
