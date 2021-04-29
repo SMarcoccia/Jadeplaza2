@@ -13,16 +13,15 @@ input[name*="AV"],
 input[name*="BV"],
 input[name*="CV"]{
 	padding: 0;
-	/*width: 195px;*/
 }
 
 select[id*="AV"],
 select[id*="BV"],
 select[id*="CV"]{
 	padding: 0;
-	/*width: 195px;*/
 	font-size: 12px;
 }
+
 /* HEADER */
 
 #header{
@@ -34,29 +33,8 @@ select[id*="CV"]{
 }
 
 #h1{
-	/*position: relative;*/
-	/*position: fixed;
-    position: absolue;
-    width: 100%;*/
    	padding-top: 100px;
 }
-/*
-
-#nbAppels{
-	position: relative;
-	position: fixed;
-    position: absolue;
-    width: 100%;
-   	padding-top: 195px;
-}
-
-#form{
-	position: relative;
-	position: fixed;
-    width: 100%;
-   	padding-top: 228px;
-}
-*/
 
 
 #filter1_param,
@@ -64,14 +42,8 @@ select[id*="CV"]{
 #filter3_param{
 	font-size: 12px;
 }
-/*
-form .filter{
-	font-size:12px;
-}*/
 
 #table{
-	/*position: absolute;
-	margin-top: 375px;*/
 	font-size: 10px;
 	width: 320% !important;
 }
@@ -122,10 +94,6 @@ header nav div .deconnexion:hover{
 	font-size: 12px;
 }
 
-/*
-.filter .filter1 div select{
-	font-size: 12px;
-}*/
 
 /*DATE ET HEURE*/
 #AV1, #AV1Bis,
@@ -158,9 +126,9 @@ header nav div .deconnexion:hover{
 		flex-direction: flex-column;
 	}
 
-	/*#input-filtrer{
+	#input-filtrer{
 		margin-bottom: 20px;
-	}*/
+	}
 }
 
 @media (min-width: 768px) and (max-width: 990px){
@@ -173,57 +141,10 @@ header nav div .deconnexion:hover{
 	}
 	
 	#h1{
-		/*position: relative;
-		position: fixed;
-	    position: absolue;
-	    width: 100%;
-	   	padding-top: 100px;*/
 	   	text-align: center;
 	}
 	
-	/*.filter,
-	.filter1
-	#filter1_param,
-	#filter2_param,
-	#filter3_param,
-	.filtre2Bis_1,
-	.filtre2Bis_2,
-	.filtre2Bis_3,
-	#filtrer {*/
-		/*margin-left: 40px;
-		display: flex !important;
-		flex-direction: row !important;*/
-		/*position: fixed;
-		margin-top: 165px;*/
-		/*margin-top: 275px;*/
-		/*margin: 5px auto;
-	}*/
-	/*
-	.filter1-select,
-	.filter2-select,
-	.filter3-select{
-		margin: 0 93px;
-	}*/
-	
-/*	
-	#nbAppels{
-		position: relative;
-		position: fixed;
-	    position: absolue;
-	    width: 100%;
-	   	padding-top: 195px;
-	}
-	
-	#form{
-		position: relative;
-		position: fixed;
-	    width: 100%;
-	   	padding-top: 228px;
-	}*/
-	
 	#table{
-		/*position: absolute;
-		margin-top: 375px;*/
 		font-size: 10px;
 		width: 320% !important;
 	}
@@ -233,13 +154,13 @@ header nav div .deconnexion:hover{
 	}
 	
 	#filtrer div{
-		margin: auto 0;
+		margin: 20px 0;
 		display: flex;
 		flex-direction: flex-column;
 	}
 
 	#input-filtrer{
-		margin-bottom: 20px;
+		margin-bottom: 18px;
 	}
 }
   
@@ -252,81 +173,6 @@ header nav div .deconnexion:hover{
 	    width: 100%;
 	    z-index:9999;
 	}
-	/*
-	#h1{
-		position: relative;
-		position: fixed;
-	    position: absolue;
-	    width: 100%;
-	   	padding-top: 100px;
-	}
-	
-	#nbAppels{
-		position: relative;
-		position: fixed;
-	    position: absolue;
-	    width: 100%;
-	   	padding-top: 195px;
-	}
-	
-	#form{
-		position: relative;
-		position: fixed;
-	    position: absolue;
-	    width: 100%;
-	   	padding-top: 228px;
-	   	z-index:9998;
-	}*/
-	/*
-	.filter,
-	.filter1
-	#filter1_param,
-	#filter2_param,
-	#filter3_param,
-	.filtre2Bis_1,
-	.filtre2Bis_2,
-	.filtre2Bis_3,
-	#filtrer {*/
-		/*margin-left: 40px;
-		display: flex !important;
-		flex-direction: row !important;*/
-		/*position: fixed;
-		margin-top: 165px;*/
-		/*margin-top: 275px;*/
-		/*margin: 5px auto;
-	}*/
-	/*
-	.filter1-select,
-	.filter2-select,
-	.filter3-select{
-		margin: 0 93px;
-	}*/
-	/*
-	#input-filtrer{
-		margin-right: 40px;
-		width: 100px;
-		height: 20px;
-	}
-	
-	#enlever-filtre{
-		width: 100px;
-		height: max-content;
-	}
-	
-	main form div div .filter1{
-		margin-left: 47px;
-	}*/
-
-	/*#table{*/
-		/*position: absolute;
-		margin-top: 545px;*/
-		/*font-size: 10px;
-		width: 320% !important;
-	}*/
-	/*
-	.filter1{
-		margin: 0 auto;
-	}*/
 	
 	.column1-filters{
 		margin-bottom: 20px;
